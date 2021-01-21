@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Assets.tmlpaks.cutils
+namespace tmlpaks.commons
 {
     [Serializable]
     public class DayTime
