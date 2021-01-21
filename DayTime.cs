@@ -37,6 +37,8 @@ namespace tmlpaks.commons
         }
         public string YMD { get => $"{Year:0000} {Month:00} {Day:00}"; }
         public string YMDHM { get => $"{Year:0000} {Month:00} {Day:00} {Hour:00}:{Minutes:00}"; }
+        public string YMDH { get => $"{Year:0000} {Month:00} {Day:00} {Hour:00}"; }
+        public string YYYYMM { get => $"{Year:0000} {Month:00}"; }
 
         public DayTime(int year, int month, int day = 1, int hour = 0, int minutes = 0)
         {
