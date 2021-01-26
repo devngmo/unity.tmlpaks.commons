@@ -17,6 +17,7 @@ namespace tmlpaks.commons.cui
         {
             this.title.text = title;
             this.msg.text = msg;
+            this.Listener = listener;
             gameObject.SetActive(true);
         }
 

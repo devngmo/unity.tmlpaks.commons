@@ -31,7 +31,7 @@ namespace tmlpaks.commons.cui
             }
             catch(Exception ex)
             {
-
+                Debug.LogError(ex);
             }
         }
     }

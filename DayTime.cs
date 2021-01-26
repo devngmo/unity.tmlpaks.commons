@@ -23,7 +23,7 @@ namespace tmlpaks.commons
 
         public int TotalDays
         {
-            get => Month * 30 + Day;
+            get => TotalMonths * 30 + Day;
         }
 
         public int TotalHours

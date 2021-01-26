@@ -38,6 +38,7 @@ namespace tmlpaks.commons.cui
 
         internal void NotifyDataChanged()
         {
+            Debug.Log($"{gameObject.name} NotifyDataChanged");
             foreach (ListViewItemHolder item in items)
             {
                 GameObject.Destroy(item.gameObject);
@@ -45,20 +46,31 @@ namespace tmlpaks.commons.cui
             items.Clear();
             if (Provider == null) return;
 
-            
-            float top = -itemSpacing;
+            float contentH = itemSpacing;
+            float top = itemSpacing;
             for (int i = 0; i < Provider.Count; i++)
             {
                 ListViewItemHolder newItem = GameObject.Instantiate(itemViewTemplate);
                 RectTransform newItemRT = newItem.GetComponent<RectTransform>();
-                newItemRT.parent = viewportContent;
-                float itemH = newItem.GetComponent<RectTransform>().rect.height;
-                top -= itemH/2 + itemSpacing;
-                newItemRT.position = new Vector3(newItemRT.position.x, top);
+                Vector2 sz = newItemRT.sizeDelta;
+                float itemH = sz.y;
+
+                newItemRT.SetParent(viewportContent);
+
+                top += itemH / 2 + itemSpacing;
+                newItemRT.anchoredPosition = new Vector2(0, -top);
+                //newItemRT.Left(0).Right(0).Top(top).Bottom(top - itemH);
+                newItemRT.sizeDelta = sz;
+
                 newItem.Bind(Provider.GetItemAt(i));
                 items.Add(newItem);
-                top -= itemH/2 + itemSpacing;
+                top += itemH/2 + itemSpacing;
+
+                contentH += itemH + itemSpacing;
+                Debug.Log($"item [{i}] at {newItemRT.rect}");
             }
+
+            viewportContent.sizeDelta = new Vector2(viewportContent.sizeDelta.x, contentH);
         }
 
         void Update()
