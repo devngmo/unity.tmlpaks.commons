@@ -38,8 +38,35 @@ namespace tmlpaks.commons.ui
     {
         public UIActivityBehaviour[] activities;
 
-        public void Show(string activityID)
+        List<string> navHistory = new List<string>();
+
+        public string CurrentActivityID
         {
+            get
+            {
+                if (navHistory.Count == 0) return null;
+                return navHistory[navHistory.Count - 1];
+            }
+        }
+
+        public string PreviousActivityID {
+            get
+            {
+                if (navHistory.Count < 2) return null;
+                return navHistory[navHistory.Count - 2];
+            }
+        }
+
+
+        public bool Show(string activityID, bool removeThisFromHistory = true)
+        {
+            if (CurrentActivityID == activityID) return false;
+
+            if (removeThisFromHistory)
+                navHistory.Remove(activityID);
+
+            navHistory.Add(activityID);
+
             foreach (var a in activities)
             {
                 if (a.GetID() == activityID)
@@ -47,6 +74,30 @@ namespace tmlpaks.commons.ui
                 else if (a.isActiveAndEnabled)
                     a.Hide();
             }
+            return true;
+        }
+
+        internal void back()
+        {
+            if (PreviousActivityID != null)
+            {
+                Show(PreviousActivityID);
+            }
+        }
+
+        internal T getActivity<T>(string activityID)
+        {
+            foreach (var a in activities)
+            {
+                if (a.GetID() == activityID)
+                    return (T)((object)a);
+            }
+            return default(T);
+        }
+
+        internal void pushNavHistory(string activityID)
+        {
+            navHistory.Add(activityID);
         }
     }
 }
