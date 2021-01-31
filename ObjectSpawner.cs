@@ -16,7 +16,7 @@ namespace tmlpaks.commons
         public float minInterval = 1;
         public float maxInterval = 2;
 
-        public enum SpawnPolicies { CreateInstance, SendMessage }
+        public enum SpawnPolicies { CreateInstance, SendMessage, SendMessageUpwards }
         public SpawnPolicies SpawnPolicy = SpawnPolicies.CreateInstance;
 
         public bool SpawnOnStart = true;
@@ -59,6 +59,10 @@ namespace tmlpaks.commons
             else if (SpawnPolicy == SpawnPolicies.SendMessage)
             {
                 SendMessage("SpawnObject", objectTemplate);
+            }
+            else if (SpawnPolicy == SpawnPolicies.SendMessageUpwards)
+            {
+                SendMessageUpwards("SpawnObject", objectTemplate);
             }
         }
     }
