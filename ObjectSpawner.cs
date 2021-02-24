@@ -54,7 +54,8 @@ namespace tmlpaks.commons
         {
             if (SpawnPolicy == SpawnPolicies.CreateInstance)
             {
-                GameObject.Instantiate(objectTemplate);
+                var newObj = GameObject.Instantiate(objectTemplate);
+                newObj.transform.position = transform.position;
             }
             else if (SpawnPolicy == SpawnPolicies.SendMessage)
             {
