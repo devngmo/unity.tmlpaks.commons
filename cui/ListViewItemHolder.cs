@@ -27,7 +27,8 @@ namespace tmlpaks.commons.cui
             try
             {
                 var binder = GetComponent<ListViewItemBinder>();
-                binder.Bind(itemModel);
+                if (binder != null)
+                    binder.Bind(itemModel);
             }
             catch(Exception ex)
             {
