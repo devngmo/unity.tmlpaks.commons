@@ -52,14 +52,12 @@ namespace tmlpaks.commons.cui
             {
                 ListViewItemHolder newItem = GameObject.Instantiate(itemViewTemplate);
                 RectTransform newItemRT = newItem.GetComponent<RectTransform>();
+                newItemRT.SetParent(viewportContent);
                 Vector2 sz = newItemRT.sizeDelta;
                 float itemH = sz.y;
-
-                newItemRT.SetParent(viewportContent);
-
                 top += itemH / 2 + itemSpacing;
-                newItemRT.anchoredPosition = new Vector2(0, -top);
-                //newItemRT.Left(0).Right(0).Top(top).Bottom(top - itemH);
+                //newItemRT.anchoredPosition = new Vector2(0, -top);
+                newItemRT.Left(0).Right(0).Top(top).Bottom(top - itemH);
                 newItemRT.sizeDelta = sz;
 
                 newItem.Bind(Provider.GetItemAt(i));
