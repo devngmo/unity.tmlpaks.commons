@@ -19,5 +19,10 @@ namespace tmlpaks.commons
             Row = row;
             Column = col;
         }
+
+        public override string ToString()
+        {
+            return $"({Row}, {Column})";
+        }
     }
 }
