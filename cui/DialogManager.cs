@@ -16,9 +16,9 @@ namespace tmlpaks.commons.cui
         {
             MessageDialog dlg = GameObject.Instantiate(MessageDialogTemplate);
             RectTransform rt = dlg.GetComponent<RectTransform>();
-            rt.SetParent( dialogContainer );
-            rt.Left(0).Right(0).Top(0).Bottom(0);
+            rt.DockFillAndUseParentSize(dialogContainer);
             dlg.Show(listener, title, msg);
+            rt.DockFillParent();
         }
     }
 }
