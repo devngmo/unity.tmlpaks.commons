@@ -9,7 +9,7 @@ namespace tmlpaks.commons
 {
     public class JsonHelper
     {
-        public static T[] FromJson<T>(string json)
+        public static T[] JsonToArray<T>(string json)
         {
             Wrapper<T> wrapper = JsonUtility.FromJson<Wrapper<T>>(json);
             return wrapper.Items;

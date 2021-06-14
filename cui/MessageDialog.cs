@@ -11,6 +11,8 @@ namespace tmlpaks.commons.cui
         public const string EVT_CANCEL = "cancel";
         DialogListener Listener;
 
+        public Button btnOK, btnCancel;
+
         public Text title, msg;
 
         public void Show(DialogListener listener, string title, string msg)
