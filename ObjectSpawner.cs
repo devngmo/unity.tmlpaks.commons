@@ -7,6 +7,11 @@ namespace tmlpaks.commons
 {
     public class ObjectSpawner : MonoBehaviour
     {
+        public class SpawnData
+        {
+            public ObjectSpawner sender { get; set; }
+            public Transform template { get; set; }
+        }
         public Transform objectTemplate;
         public enum TimeModes { FixedInterval, RandomInRange }
         public TimeModes timeMode = TimeModes.FixedInterval;
@@ -63,7 +68,7 @@ namespace tmlpaks.commons
             }
             else if (SpawnPolicy == SpawnPolicies.SendMessageUpwards)
             {
-                SendMessageUpwards("SpawnObject", objectTemplate);
+                SendMessageUpwards("SpawnObject", new SpawnData { sender = this, template = objectTemplate });
             }
         }
     }
